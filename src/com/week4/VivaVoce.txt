@@ -1,0 +1,46 @@
+1. What are the time complexities of search, insertion, and deletion in a B-Tree?
+   - Search: O(log_t N)
+   - Insertion: O(log_t N)
+   - Deletion: O(log_t N)
+
+2. Compare and contrast B-Trees with other balanced trees like AVL or Red-Black Trees.
+   - B-Trees:
+     - Used in databases and file systems.
+     - Nodes can have multiple children.
+     - Fewer levels, reduced disk I/O.
+   - AVL Trees:
+     - Strictly balanced binary search trees.
+     - Faster lookups, more rotations.
+   - Red-Black Trees:
+     - Self-balancing binary search trees.
+     - Fewer rotations, O(log N) operations.
+
+3. How does the degree t affect the structure and performance of a B-Tree?
+   - Higher degree t results in fewer levels.
+   - Reduces disk accesses.
+   - Increases time to search within a node.
+   - Trade-off between disk accesses and search time within a node.
+
+4. Differentiate between open addressing & separate chaining for collision resolution.
+   - Open Addressing:
+     - Elements stored within the hash table.
+     - Uses probing sequence for collisions.
+     - Methods: linear probing, quadratic probing, double hashing.
+     - Can suffer from clustering.
+   - Separate Chaining:
+     - Each slot points to a linked list.
+     - Collisions resolved by adding to the list.
+     - Easier to implement, no clustering.
+     - Performance degrades with long lists.
+
+5. How does a hash table differ from a binary search tree in terms of use cases?
+   - Hash Table:
+     - Average-case O(1) operations.
+     - Fast lookups, insertions, deletions.
+     - No order among elements.
+     - Used in associative arrays, caches, sets.
+   - Binary Search Tree (BST):
+     - Average-case O(log N) operations.
+     - Maintains sorted order.
+     - Suitable for ordered data, range queries.
+     - Variants like AVL and Red-Black trees ensure balanced trees.

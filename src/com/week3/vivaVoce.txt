@@ -1,0 +1,31 @@
+Sample VIVA-VOCE Questions (In-Lab):
+
+1. What is the balance factor in an AVL Tree? How do you calculate it?
+   - The balance factor of a node in an AVL Tree is the difference between the heights of the left and right subtrees of that node.
+   - It is calculated as: Balance Factor = Height(Left Subtree) - Height(Right Subtree)
+
+2. What is the significance of the red and black properties in Red-Black Trees?
+   - Red-Black Trees have properties that ensure the tree remains approximately balanced, which helps in maintaining O(log N) time complexity for insertion, deletion, and lookup operations.
+   - The properties are:
+     1. Every node is either red or black.
+     2. The root is always black.
+     3. Red nodes cannot have red children (no two red nodes can be adjacent).
+     4. Every path from a node to its descendant NULL nodes has the same number of black nodes.
+
+3. Can an AVL Tree have more than one node with the same value? How does it handle duplicates?
+   - Typically, AVL Trees do not allow duplicate values. However, if duplicates are allowed, they can be handled by:
+     - Storing duplicates in a linked list at the node.
+     - Modifying the tree structure to allow duplicates on either the left or right subtree consistently.
+
+4. Compare the time complexity of insertion, deletion, and lookup in AVL Trees and Red-Black Trees.
+   - Both AVL Trees and Red-Black Trees have O(log N) time complexity for insertion, deletion, and lookup operations.
+   - AVL Trees are more strictly balanced, which can lead to faster lookups but may require more rotations during insertion and deletion.
+   - Red-Black Trees are less strictly balanced, which can lead to fewer rotations during insertion and deletion but may have slightly slower lookups compared to AVL Trees.
+
+5. What is the difference between an AVL Tree and a Red-Black Tree in terms of balancing and performance?
+   - **Balancing**:
+     - AVL Trees maintain a stricter balance by ensuring the balance factor of every node is between -1 and 1.
+     - Red-Black Trees maintain a looser balance using the red and black properties.
+   - **Performance**:
+     - AVL Trees provide faster lookups due to stricter balancing but may require more rotations during insertions and deletions.
+     - Red-Black Trees provide faster insertions and deletions due to fewer rotations but may have slightly slower lookups compared to AVL Trees.

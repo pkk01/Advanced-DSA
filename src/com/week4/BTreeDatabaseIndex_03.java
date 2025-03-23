@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class BTreeIndex_01 {
+public class BTreeDatabaseIndex_03 {
     static class BTreeNode {
         List<Integer> keys;
         List<BTreeNode> children;
@@ -87,29 +87,24 @@ public class BTreeIndex_01 {
             }
         }
 
-        public List<Integer> rangeQuery(int start, int end) {
-            List<Integer> result = new ArrayList<>();
-            rangeQueryUtil(root, start, end, result);
-            return result;
+        public boolean search(int key) {
+            return search(root, key);
         }
 
-        private void rangeQueryUtil(BTreeNode node, int start, int end, List<Integer> result) {
-            if (node == null)
-                return;
-
-            for (int i = 0; i < node.keys.size(); i++) {
-                if (!node.isLeaf) {
-                    rangeQueryUtil(node.children.get(i), start, end, result);
-                }
-
-                int key = node.keys.get(i);
-                if (key >= start && key <= end) {
-                    result.add(key);
-                }
+        private boolean search(BTreeNode node, int key) {
+            int i = 0;
+            while (i < node.keys.size() && key > node.keys.get(i)) {
+                i++;
             }
 
-            if (!node.isLeaf) {
-                rangeQueryUtil(node.children.get(node.children.size() - 1), start, end, result);
+            if (i < node.keys.size() && key == node.keys.get(i)) {
+                return true;
+            }
+
+            if (node.isLeaf) {
+                return false;
+            } else {
+                return search(node.children.get(i), key);
             }
         }
     }
@@ -120,30 +115,25 @@ public class BTreeIndex_01 {
         // Read degree of B-tree
         int t = scanner.nextInt();
 
-        // Read number of keys
+        // Read number of operations
         int n = scanner.nextInt();
+        scanner.nextLine(); // consume the newline character
 
         // Create B-tree
         BTree tree = new BTree(t);
 
-        // Insert keys into B-tree
+        // Process operations
         for (int i = 0; i < n; i++) {
+            String operation = scanner.next();
             int key = scanner.nextInt();
-            tree.insert(key);
-        }
+            scanner.nextLine(); // consume the newline character
 
-        // Read number of range queries
-        int q = scanner.nextInt();
-
-        // Perform range queries and output results
-        for (int i = 0; i < q; i++) {
-            int l = scanner.nextInt();
-            int r = scanner.nextInt();
-            List<Integer> result = tree.rangeQuery(l, r);
-            for (int key : result) {
-                System.out.print(key + " ");
+            if (operation.equals("INSERT")) {
+                tree.insert(key);
+            } else if (operation.equals("SEARCH")) {
+                boolean found = tree.search(key);
+                System.out.println(found ? "YES" : "NO");
             }
-            System.out.println();
         }
 
         scanner.close();
